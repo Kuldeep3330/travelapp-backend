@@ -8,7 +8,7 @@ const loginHandler = async (req, res)=>{
         !user && res.status(401).json({message:"Incorrect Mobile Number"});
 
         const decodePass = CryptoJS.AES.decrypt(user.password, process.env.PASSWORD_SECRET_KEY || "kuldeepkumar").toString(CryptoJS.enc.Utf8);
-        (decodePass !== req.body.password) && res.status(401).json({message:"Incorrect Password"});
+        decodePass !== req.body.password && res.status(401).json({ message: "Incorrect Password"});
 
         const {password, ...rest}= user._doc;
         const accessToken = jwt.sign({username: user.username}, process.env.ACCESS_TOKEN || "shibhujee")
@@ -18,6 +18,7 @@ const loginHandler = async (req, res)=>{
     } catch (err) {
 
         console.log(err);
+       
     }
 
 }

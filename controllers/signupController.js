@@ -8,7 +8,7 @@ const signupHandler = async(req, res)=>{
             username: req.body.username,
             number: req.body.number,
             email: req.body.email,
-            password: CryptoJS.AES.encrypt(req.body.password, "kuldeepkumar").toString()
+            password: CryptoJS.AES.encrypt(req.body.password, process.env.PASSWORD_SECRET_KEY || "kuldeepkumar").toString()
         } 
         const newUser = new User(userObject);
 
@@ -17,7 +17,8 @@ const signupHandler = async(req, res)=>{
 
     } catch (err) {
 
-        res.status(500).json({message:"registration failed"})
+        console.log(err);
+        res.status(500).json({ message: "Error creating a user" })
     }
 }
 

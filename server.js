@@ -1,7 +1,7 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
 const dotenv= require('dotenv')
-const cors = require()
+const cors = require("cors")
 
 dotenv.config();
 
@@ -37,7 +37,7 @@ app.use("/api/wishlist", wishListRouter);
 
 mongoose.connection.once("open", () => {
     console.log("Connected to DB");
-    app.listen(process.env.PORT || PORT, () => {
+    app.listen( PORT, () => {
       console.log("Server is Up and Running");
     });
   

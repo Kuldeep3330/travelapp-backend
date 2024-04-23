@@ -5,8 +5,8 @@ const createWishlistHandler = async(req, res)=>{
     try {
         const savedWishlist = await newWishlist.save();
         res.status(201).json(savedWishlist);
-    } catch (error) {
-        res.status(500).json({message:"faiseld to create wishlist"});
+    } catch (err) {
+        res.status(500).json({message:"failed to create wishlist"});
         
     }
 }
@@ -24,10 +24,11 @@ const deleteWishlistHandler = async(req, res)=>{
 const getWishlistHandler =  async(req, res)=>{
     try {
         const wishlist = await Wishlist.find({});
-        wishlist ? res.json(wishlist):res.json({message:"no item found"});
+        wishlist ? res.json(wishlist) : res.json({message:"no item found"});
 
         
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
         
     }
