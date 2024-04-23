@@ -8,7 +8,7 @@ const signupHandler = async(req, res)=>{
             username: req.body.username,
             number: req.body.number,
             email: req.body.email,
-            password: CryptoJS.AES.encrypt(req.body.password, process.env.PASSWORD_SECRET_KEY || "kuldeepkumar").toString()
+            password: CryptoJS.AES.encrypt(req.body.password, process.env.PASSWORD_SECRET_KEY).toString()
         } 
         const newUser = new User(userObject);
 
